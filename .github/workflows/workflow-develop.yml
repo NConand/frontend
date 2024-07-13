@@ -13,17 +13,21 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v2
+        
+      - name: Mover al directorio de código
+        run: cd code
 
       - name: Ejecutar script de construcción
         run: |
           chmod +x .github/scripts/build.sh
           ./.github/scripts/build.sh
-  
+        shell: /usr/bin/bash -e {0}
+
       - name: Save Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts
-          path: out
+          path: codeSource/out
 
   deploy-tf:
     runs-on: ubuntu-latest

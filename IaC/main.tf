@@ -1,23 +1,23 @@
-resource "aws_s3_bucket" "fe-demo-bucket"{
+resource "aws_s3_bucket" "fe-bucket-tf"{
     bucket = var.bucket_name
 
     force_destroy = true
 
     tags = {
-        Name        = "fe-demo-bucket"
+        Name        = "fe-bucket-tf"
         Environment = "dev"
     }
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {
-  bucket = aws_s3_bucket.fe-demo-bucket.id
+  bucket = aws_s3_bucket.fe-bucket-tf.id
   rule {
     object_ownership = "ObjectWriter"
   }
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
-  bucket = aws_s3_bucket.fe-demo-bucket.id
+  bucket = aws_s3_bucket.fe-bucket-tf.id
 
   block_public_acls       = false
   block_public_policy     = false
@@ -31,12 +31,12 @@ resource "aws_s3_bucket_acl" "example" {
     aws_s3_bucket_public_access_block.example,
   ]
 
-  bucket = aws_s3_bucket.fe-demo-bucket.id
+  bucket = aws_s3_bucket.fe-bucket-tf.id
   acl    = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "frontend_bucket_policy" {
-  bucket = aws_s3_bucket.fe-demo-bucket.id
+  bucket = aws_s3_bucket.fe-bucket-tf.id
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -45,7 +45,7 @@ resource "aws_s3_bucket_policy" "frontend_bucket_policy" {
         Effect = "Allow",
         Principal = "*",
         Action = "s3:GetObject",
-        Resource = "${aws_s3_bucket.fe-demo-bucket.arn}/*"
+        Resource = "${aws_s3_bucket.fe-bucket-tf.arn}/*"
       }
     ]
   })
@@ -57,7 +57,7 @@ module "template_files" {
 }
 
 resource "aws_s3_bucket_website_configuration" "frontend_bucket_website_configuration" {
-  bucket = aws_s3_bucket.fe-demo-bucket.id
+  bucket = aws_s3_bucket.fe-bucket-tf.id
 
   index_document {
     suffix = "index.html"
@@ -65,7 +65,7 @@ resource "aws_s3_bucket_website_configuration" "frontend_bucket_website_configur
 }
 
 resource "aws_s3_bucket_object" "bucket_web_files" {
-  bucket = aws_s3_bucket.fe-demo-bucket.id
+  bucket = aws_s3_bucket.fe-bucket-tf.id
 
   for_each     = module.template_files.files
   key          = each.key
