@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Mover al directorio de código
+cd codeSource
+
 # Instalar dependencias
 npm install
 
