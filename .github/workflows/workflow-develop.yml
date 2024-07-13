@@ -37,6 +37,9 @@ jobs:
         with:
           path: IaC
 
+      - name: Mover al directorio de código
+        run: cd IaC
+        
       - name: List files in IaC directory
         run: ls -al IaC
         
