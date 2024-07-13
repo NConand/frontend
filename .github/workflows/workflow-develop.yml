@@ -42,7 +42,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SECRET_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}  # Opcional
-          role-to-assume: arn:aws:iam::576955172276:role/LabRole
 
       - name: List S3 buckets
         run: aws s3 ls        
