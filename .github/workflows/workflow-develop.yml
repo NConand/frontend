@@ -41,11 +41,13 @@ jobs:
         run: cd IaC
         
       - name: List files in root directory
-        run: ls 
+        run: ls -al
 
       - name: List files in IaC directory
-        run: ls IaC
+        run: ls -al IaC
 
+      - name: List files in IaC/IaC directory
+        run: ls -al IaC/IaC
         
       - name: Download Build Artifacts
         uses: actions/download-artifact@v2
