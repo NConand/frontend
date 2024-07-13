@@ -40,8 +40,12 @@ jobs:
       - name: Mover al directorio de código
         run: cd IaC
         
+      - name: List files in root directory
+        run: ls -al
+
       - name: List files in IaC directory
         run: ls -al IaC
+
         
       - name: Download Build Artifacts
         uses: actions/download-artifact@v2
