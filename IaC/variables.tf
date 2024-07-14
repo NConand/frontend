@@ -15,16 +15,13 @@ variable "bucket_name" {
     default = "fe-demo-bucket"
 }
 
-variable  AWS-ACCESS-KEY-ID {
+variable "aws_access_key" {
     description = "Default bucket name"
     type = string
 }
 
-variable "AWS-SECRET-ACCESS-KEY" {
+variable "aws_secret_key" {
     description = "Default bucket name"
     type = string
 }
-variable "AWS-SESSION-TOKEN" {
-    description = "Default bucket name"
-    type = string
-}
+
