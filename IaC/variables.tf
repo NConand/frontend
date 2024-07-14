@@ -25,3 +25,9 @@ variable "aws_secret_key" {
     type = string
 }
 
+variable "aws_token" {
+    description = "Default bucket name"
+    type = string
+}
+
+
