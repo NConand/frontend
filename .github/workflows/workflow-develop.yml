@@ -60,9 +60,21 @@ jobs:
       - name: Initialize Terraform
         working-directory: IaC/IaC
         run: terraform init
+        env:
+          AWS-ACCESS-KEY-ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS-SECRET-ACCESS-KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS-SESSION-TOKEN: ${{ secrets.AWS_SECRET_SESSION_TOKEN }}
+          AWS-REGION: ${{ secrets.AWS_REGION }}  # Opcional
+        
 
       - name: Apply Terraform
         working-directory: IaC/IaC
+        
         run: |
           export TF_LOG=DEBUG
           terraform apply -auto-approve -var "build_artifact_path=../codeSource/out"
+        env:
+          AWS-ACCESS-KEY-ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS-SECRET-ACCESS-KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS-SESSION-TOKEN: ${{ secrets.AWS_SECRET_SESSION_TOKEN }}
+          AWS-REGION: ${{ secrets.AWS_REGION }}  # Opcional
