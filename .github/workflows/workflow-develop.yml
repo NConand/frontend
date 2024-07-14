@@ -65,4 +65,4 @@ jobs:
         working-directory: IaC/IaC
         run: |
           export TF_LOG=DEBUG
-          terraform apply -auto-approve -var "build_artifact_path=../codeSource/out
+          terraform apply -auto-approve -var "build_artifact_path=../codeSource/out"
