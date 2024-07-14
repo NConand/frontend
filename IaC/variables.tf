@@ -12,7 +12,7 @@ variable "build_artifact_path" {
 variable "bucket_name" {
     description = "Default bucket name"
     type = string
-    default = "fe-demo-bucket"
+    default = "fe-bucket-tf"
 }
 
 variable "aws_access_key" {
