@@ -55,10 +55,7 @@ jobs:
           echo "AWS credentials configured"
           
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 3.0.0  # O la versión que necesites
-
+        uses: hashicorp/setup-terraform@v1
 
       - name: Initialize Terraform
         working-directory: IaC/IaC
