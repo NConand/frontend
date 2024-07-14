@@ -43,9 +43,17 @@ resource "aws_s3_bucket_policy" "frontend_bucket_policy" {
     Statement = [
       {
         Effect = "Allow",
-        Principal = "*",
-        Action = "s3:GetObject",
-        Resource = "${aws_s3_bucket.fe-bucket-tf.arn}/*"
+			  Principal = "*",
+			  Action = [
+			    "s3:PutObject",
+          "s3:PutObjectAcl",
+          "s3:GetObject",
+          "s3:ListBucket"
+        ],
+        Resource = [
+          "${aws_s3_bucket.fe-bucket-tf.arn}",
+          "${aws_s3_bucket.fe-bucket-tf.arn}/*"
+        ]
       }
     ]
   })
