@@ -53,7 +53,7 @@ resource "aws_s3_bucket_policy" "frontend_bucket_policy" {
 
 module "template_files" {
     source = "hashicorp/dir/template"
-    base_dir ="../code/out"
+    base_dir = var.build_artifact_path
 }
 
 resource "aws_s3_bucket_website_configuration" "frontend_bucket_website_configuration" {
