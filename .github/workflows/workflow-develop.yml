@@ -66,7 +66,9 @@ jobs:
           AWS-SESSION-TOKEN: ${{ secrets.AWS_SECRET_SESSION_TOKEN }}
           AWS-REGION: ${{ secrets.AWS_REGION }}  # Opcional
         
-
+      - name: List Build Artifacts
+        run: ls -R ../codeSource/out
+        
       - name: Apply Terraform
         working-directory: IaC/IaC
         
