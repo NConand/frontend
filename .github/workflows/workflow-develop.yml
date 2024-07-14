@@ -63,8 +63,6 @@ jobs:
 
       - name: Apply Terraform
         working-directory: IaC/IaC
-        env:
-          BUILD_ARTIFACT_PATH: ../codeSource/out
         run: |
           export TF_LOG=DEBUG
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var "build_artifact_path=../codeSource/out
