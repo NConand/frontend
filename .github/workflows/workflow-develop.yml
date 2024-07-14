@@ -55,7 +55,10 @@ jobs:
           echo "AWS credentials configured"
           
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 3.0.0  # O la versión que necesites
+
 
       - name: Initialize Terraform
         working-directory: IaC/IaC
@@ -67,7 +70,7 @@ jobs:
           AWS-REGION: ${{ secrets.AWS_REGION }}  # Opcional
         
       - name: List Build Artifacts
-        run: ls -R ../codeSource/out
+        run: ls -R ../codeSource/out/apps/catalog
         
       - name: Apply Terraform
         working-directory: IaC/IaC
